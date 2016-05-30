@@ -26,7 +26,6 @@ Then you should create a Car Object Constructor that have the following properti
 - The `quotePrice` function takes a variable call `rentalDuration` then returns the `rentalPrice * rentalDuration`
 
 - The `reserve` function takes a `customer` object and `rentalDuration` value.
-
   1. This function should check if the car itself is available for rentel
   2. If yes:
     1. Change the availible status
@@ -37,7 +36,6 @@ Then you should create a Car Object Constructor that have the following properti
     1. `return false`
 
 - The `return` function take no arguments.
-
   1. This will check if the car is available.
   2. If Yes:
     1. `return Sorry, this car have already been returned.";`
