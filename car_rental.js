@@ -15,25 +15,25 @@ var Vendor = function(name) {
   this.customers = [];
 
   this.findCarIndex = function (carID) {
-    this.cars.findIndex(function(car){
+    return this.cars.findIndex(function(car){
       return car.id === carID ? true : false ;
     });
   };
 
   this.findCustomerIndex = function (customerID) {
-    this.customers.findIndex(function(customer){
+    return this.customers.findIndex(function(customer){
       return customer.id === customerID ? true : false ;
     });
   };
 
   this.getCar = function (carID) {
-    this.cars.find(function(car){
+    return this.cars.find(function(car){
       return car.id === carID ? true : false ;
     });
   };
 
   this.getCustomer = function (customerID) {
-    this.customers.find(function(customer){
+    return this.customers.find(function(customer){
       return customer.id === customerID ? true : false ;
     });
   };
@@ -61,8 +61,8 @@ var carA = new Car(carInfo);
 var vendor = new Vendor('Jens Limited');
 vendor.addCustormer(customerA);
 
-vendor.avalibleCars();
+console.log(vendor.availableCars());
 vendor.addCar(carA);
-vendor.avalibleCars();
+console.log(vendor.availableCars());
 
 vendor.rentCar(customerA.id, 5);
