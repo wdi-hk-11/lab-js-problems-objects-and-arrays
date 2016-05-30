@@ -16,41 +16,25 @@ var Vendor = function(name) {
 
   this.findCarIndex = function (carID) {
     this.cars.findIndex(function(car){
-      if (car.id === carID){
-        return true;
-      } else {
-        return false;
-      }
+      return car.id === carID ? true : false ;
     });
   };
 
   this.findCustomerIndex = function (customerID) {
     this.customers.findIndex(function(customer){
-      if (customer.id === customerID){
-        return true;
-      } else {
-        return false;
-      }
+      return customer.id === customerID ? true : false ;
     });
   };
 
   this.getCar = function (carID) {
     this.cars.find(function(car){
-      if (car.id === carID){
-        return true;
-      } else {
-        return false;
-      }
+      return car.id === carID ? true : false ;
     });
   };
 
   this.getCustomer = function (customerID) {
     this.customers.find(function(customer){
-      if (customer.id === customerID){
-        return true;
-      } else {
-        return false;
-      }
+      return customer.id === customerID ? true : false ;
     });
   };
 
