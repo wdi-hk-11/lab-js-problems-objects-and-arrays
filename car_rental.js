@@ -74,7 +74,7 @@ var Vendor = function(name) {
   this.addCar = function (carObj) {
     var car = this.getCar(carObj.id);
     if (car) {
-      console.log("ID already exists");
+      console.log("Car ID already exists");
     } else {
       this.cars.push(carObj);
       console.log("Car added to warehouse");
@@ -84,13 +84,14 @@ var Vendor = function(name) {
   this.addCustomer = function (customerObj) {
     var customer = this.getCustomer(customerObj.id);
     if (customer) {
-      console.log("ID already exists");
+      console.log("Customer ID already exists");
     } else {
       this.customers.push(customerObj);
       console.log("Customer added to warehouse");
     }
   };
 
+  //haven't check
   this.removeCar = function (carID) {
     var carIndex = this.findCarIndex(carID.id);
     if (carIndex >=0) {
@@ -111,10 +112,12 @@ var Vendor = function(name) {
     }
   };
 
+  //??
   this.availableCars = function () {
     return this.cars.filter(function(car) {return car.available == true;});
   };
 
+  //not done
   this.rentCar = function (customerID, rentalDuration) {
     If (this.availableCars.length === 0) {
       console.log("All our cars have been rented");
@@ -140,6 +143,7 @@ var Vendor = function(name) {
     }
   };
 
+  //not done
   this.totalRevenue = function () {
     this.reduce(function(prev, curr) {
       return prev + curr;
