@@ -15,39 +15,43 @@ var Vendor = function(name) {
   this.customers = [];
 
   this.findCarIndex = function (carID) {
-    for (var i=0; i<this.cars.length; i++) {
-      if (this.cars[i].id === carID) {
-        return i;
+    this.cars.findIndex(function(car){
+      if (car.id === carID){
+        return true;
+      } else {
+        return false;
       }
-    }
-    return -1;
+    });
   };
 
   this.findCustomerIndex = function (customerID) {
-    for (var i=0; i<this.customers.length; i++) {
-      if (this.customers[i].id === customerID) {
-        return i;
+    this.customers.findIndex(function(customer){
+      if (customer.id === customerID){
+        return true;
+      } else {
+        return false;
       }
-    }
-    return -1;
+    });
   };
 
   this.getCar = function (carID) {
-    var index = this.findCarIndex(carID);
-    if (index >= 0){
-      return this.cars[index];
-    } else {
-      return null;
-    }
+    this.cars.find(function(car){
+      if (car.id === carID){
+        return true;
+      } else {
+        return false;
+      }
+    });
   };
 
   this.getCustomer = function (customerID) {
-    var index = this.findCustomerIndex(customerID);
-    if (index >= 0){
-      return this.customers[index];
-    } else {
-      return null;
-    }
+    this.customers.find(function(customer){
+      if (customer.id === customerID){
+        return true;
+      } else {
+        return false;
+      }
+    });
   };
 
   // **your code here**

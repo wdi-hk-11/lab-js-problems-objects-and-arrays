@@ -67,11 +67,11 @@ After the Car Object, create a Vendor Object Constructor that have the following
 
 - The `findCarIndex`/`findCustomerIndex` function takes an `carID`/`customerID` and returns the index or -1.
 
-- The `getCar`/`getCustomer` function takes a `carID`/`customerID` and returns the actual car/customer object or null.
+- The `getCar`/`getCustomer` function takes a `carID`/`customerID` and returns the actual car/customer object or undefined.
 
 - The `addCar`/`addCustomer` function takes a `carObj` or `customerObj`.
   1. It should check if car/customer exists using `getCar`/`getCustomer`
-  2. If `car/customer is === null`
+  2. If `car/customer is === undefined`
     1. push the `carObj`/`customerObj` into `cars`/`customers`
     1. `console.log("Car/Customer added to warehouse")`
   3. else
@@ -97,7 +97,7 @@ After the Car Object, create a Vendor Object Constructor that have the following
     1. `console.log("All our cars have been rented")`
   3. else
     1. Get the customer using the `getCustomer` function
-    2. if `customer === null`
+    2. if `customer === undefined`
       1. `console.log("Please provide a valid customerID");`
     3. else
       1. Set customer's `carRented` to a car
@@ -106,7 +106,7 @@ After the Car Object, create a Vendor Object Constructor that have the following
 
 - The `returnCar` function takes a `customerID`
   1. Get customer using the function `getCustomer`
-  2. if `customerIndex === null`
+  2. if `customerIndex === undefined`
     1. `console.log("Please provide a valid customerID");`
   3. else
     1. run customer's carRented's `return` function
