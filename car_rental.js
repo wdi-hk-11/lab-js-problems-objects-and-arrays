@@ -31,13 +31,13 @@ var Car = function (carInfo) {
   };
 
   this.return = function () {
-    if (!this.availible) {
+    if (this.availible) {
+      return "Sorry, this car have already been returned.";
+    } else {
       this.availible = true;
       this.customer = null;
       this.rentalDuration = null;
       return "Thank you!";
-    } else {
-      return "Sorry, this car have already been returned.";
     }
   };
 };
