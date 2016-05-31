@@ -10,13 +10,13 @@ var Car = function (carInfo) {
   this.id = carInfo.id;
   this.producer = carInfo.producer;
   this.model = carInfo.model;
-  this.rentalPricePerDay = carInfo.rentalPricePerDay;
+  this.rentalPricePerDay = carInfo.rentalPrice;
   this.available = true;
   this.Customer = null;
   this.rentalDuration = 0;
 
   this.quotePrice = function(rentalDuration) {
-    return this.rentalPricePerDay * rentalDuration;
+    return this.rentalPrice * rentalDuration;
   };
 
   this.reserve = function(Customer, rentalDuration) {
