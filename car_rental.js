@@ -93,7 +93,7 @@ var Vendor = function(name) {
 
   //haven't check
   this.removeCar = function (carID) {
-    var carIndex = this.findCarIndex(carID.id);
+    var carIndex = this.findCarIndex(carID);
     if (carIndex >=0) {
       this.cars.splice(this.findCarIndex,1);
       console.log("Car deleted");
@@ -103,7 +103,7 @@ var Vendor = function(name) {
   };
 
   this.removeCustomer = function (customerID) {
-    var customerIndex = this.findCustomerIndex(customerID.id);
+    var customerIndex = this.findCustomerIndex(customerID);
     if (customerIndex >=0) {
       this.customers.splice(this.findCustomerIndex,1);
       console.log("Customer deleted");
@@ -112,19 +112,20 @@ var Vendor = function(name) {
     }
   };
 
-  //??
   this.availableCars = function () {
-    return this.cars.filter(function(car) {return car.available == true;});
+    return this.cars.filter(function(car) {return car.available ? true : false;});
   };
 
-  //not done
   this.rentCar = function (customerID, rentalDuration) {
-    If (this.availableCars.length === 0) {
+    var availableCars = this.availableCars();
+    if (availableCars.length === 0) {
       console.log("All our cars have been rented");
     } else {
       var customer = this.getCustomer(customerID);
       if (customer) {
-
+        var car = availableCars[0];
+        customer.carRented = car;
+        car.reserve(customer, rentalDuration);
         console.log("The car has been reserved");
       } else {
         console.log("Please provide a valid customerID");
@@ -136,7 +137,7 @@ var Vendor = function(name) {
     var customer = this.getCustomer[customerID];
     if (customer) {
       customer.carRented.return();
-      customer.CarRented = null;
+      customer.carRented = null;
       console.log( "Thank you for using our service");
     } else {
       console.log("Please provide a valid customerID");
@@ -145,35 +146,78 @@ var Vendor = function(name) {
 
   //not done
   this.totalRevenue = function () {
-    this.reduce(function(prev, curr) {
-      return prev + curr;
-      }
-    )
+    this.cars.reduce(function(prev, curr) {
+      return prev + (curr.rentalPricePerDay * curr.rentalDuration);
+      },0
+    );
   };
 };
 
 
 // Codes you can run to test your code
-var customerInfo = {
+var customerInfoA = {
   id: "001",
   name: "Sherman"
 };
-var customerA = new Customer(customerInfo);
 
-var carInfo = {
+var customerInfoB = {
+  id: "002",
+  name: "Sherwoman"
+};
+
+var customerInfoC = {
+  id: "003",
+  name: "Shernoman"
+};
+
+var customerA = new Customer(customerInfoA);
+var customerB = new Customer(customerInfoB);
+var customerC = new Customer(customerInfoC);
+
+var carInfoA = {
   id: "001",
   producer: "Toyota",
   model: "Subra",
   rentalPrice: 200
 };
 
-var carA = new Car(carInfo);
+var carInfoB = {
+  id: "002",
+  producer: "Volkswagen",
+  model: "Jetta",
+  rentalPrice: 300
+};
+
+var carInfoC = {
+  id: "003",
+  producer: "Toyota",
+  model: "Civic",
+  rentalPrice: 250
+};
+
+var carA = new Car(carInfoA);
+var carB = new Car(carInfoB);
+var carC = new Car(carInfoC);
+
 
 var vendor = new Vendor('Jens Limited');
 vendor.addCustomer(customerA);
+vendor.addCustomer(customerB);
+vendor.addCustomer(customerC);
+console.log(vendor.customers);
+vendor.removeCustomer(customerC.id);
+console.log(vendor.customers);
 
-vendor.avalaibleCars();
+
 vendor.addCar(carA);
-vendor.avalaibleCars();
+vendor.addCar(carB);
+console.log(vendor.availableCars());
+vendor.addCar(carC);
+console.log(vendor.availableCars());
+vendor.removeCar(carC.id);
+console.log(vendor.availableCars());
+
 
 vendor.rentCar(customerA.id, 5);
+
+console.log(vendor.totalRevenue());
