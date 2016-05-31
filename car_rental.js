@@ -393,7 +393,7 @@ var Vendor = function(name) {
 //totalRevenue function
   this.totalRevenue = function () {
     var total = 0;
-    this.Car.reduce(pv,cv); {
+    this.Car.reduce(function(pv,cv); ) {
       this.total = pv + (cv.rentalDuration * cv.rentalPrice);
       console.log(this.total);
     }
