@@ -95,7 +95,7 @@ var Vendor = function(name) {
   this.removeCar = function (carID) {
     var carIndex = this.findCarIndex(carID);
     if (carIndex >=0) {
-      this.cars.splice(this.findCarIndex,1);
+      this.cars.splice(carIndex,1);
       console.log("Car deleted");
     } else {
       console.log("Car not found");
@@ -105,7 +105,7 @@ var Vendor = function(name) {
   this.removeCustomer = function (customerID) {
     var customerIndex = this.findCustomerIndex(customerID);
     if (customerIndex >=0) {
-      this.customers.splice(this.findCustomerIndex,1);
+      this.customers.splice(customerIndex,1);
       console.log("Customer deleted");
     } else {
       console.log("Customer not found");
