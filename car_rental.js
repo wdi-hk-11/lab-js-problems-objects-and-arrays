@@ -91,7 +91,6 @@ var Vendor = function(name) {
     }
   };
 
-  //haven't check
   this.removeCar = function (carID) {
     var carIndex = this.findCarIndex(carID);
     if (carIndex >=0) {
@@ -134,7 +133,7 @@ var Vendor = function(name) {
   };
 
   this.returnCar = function (customerID) {
-    var customer = this.getCustomer[customerID];
+    var customer = this.getCustomer(customerID);
     if (customer) {
       customer.carRented.return();
       customer.carRented = null;
@@ -146,7 +145,7 @@ var Vendor = function(name) {
 
   //not done
   this.totalRevenue = function () {
-    this.cars.reduce(function(prev, curr) {
+    return this.cars.reduce(function(prev, curr) {
       return prev + (curr.rentalPricePerDay * curr.rentalDuration);
       },0
     );
@@ -219,5 +218,6 @@ console.log(vendor.availableCars());
 
 
 vendor.rentCar(customerA.id, 5);
+vendor.returnCar(customerA.id);
 
 console.log(vendor.totalRevenue());
