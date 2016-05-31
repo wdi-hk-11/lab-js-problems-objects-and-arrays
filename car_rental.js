@@ -16,7 +16,7 @@ var Car = function (carInfo) {
   this.rentalDuration = 0;
 
   this.quotePrice = function(rentalDuration) {
-    return this.rentalPrice * rentalDuration;
+    return this.rentalPricePerDay * rentalDuration;
   };
 
   this.reserve = function(Customer, rentalDuration) {
@@ -220,4 +220,6 @@ console.log(vendor.availableCars());
 vendor.rentCar(customerA.id, 5);
 vendor.returnCar(customerA.id);
 
+console.log(carA.quotePrice(5));
+vendor.rentCar(customerA.id, 5);
 console.log(vendor.totalRevenue());
