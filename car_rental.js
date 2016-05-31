@@ -1,11 +1,47 @@
 // Customer Object
 var Customer = function (customerInfo) {
-  // ** your code here**
+  this.id = customerInfo.id,
+  this.name = customerInfo.name,
+  this.carRented = null;
 };
 
 // Car Object
 var Car = function (carInfo) {
-  // ** your code here**
+  this.id = carInfo.id,
+  this.producer = carInfo.producer,
+  this.model = carInfo.model,
+  this.rentalPricePerDay = carInfo.rentalPricePerDay,
+  this.available = true,
+  this.customer = null,
+  this.rentalDuration = null,
+
+  this.quotePrice = function(rentalDuration){
+    // Do I need a 'this.' in rentalDuration if an input?
+    return this.rentalPricePerDay * rentalDuration;
+  };
+
+  this.reserve = function(customer,rentalDuration){
+    if (this.available === true){
+      this.available = false;
+      this.customer = customer;
+      this.rentalDuration = rentalDuration;
+      return true;
+    }
+    else{
+      return false;
+    }
+  };
+
+  this.return = function(){
+    if (this.available === true){
+      console.log("Sorry bro, this car has already been returned.");
+    }
+    else {
+      this.available = true;
+      this.customer = null;
+      this.rentalDuration = null;
+    }
+  };
 };
 
 // Vendor Object
@@ -38,7 +74,61 @@ var Vendor = function(name) {
     });
   };
 
-  // **your code here**
+  // My code below
+  this.addCar = function(carObj){
+    if (this.getCar(carObj.id)){
+      console.log("ID already exists bro");
+    }
+    else{
+      this.cars.push(carObj);
+      console.log("Car added to warehouse bro");
+    }
+  };
+
+  this.addCustomer = function(customerObj){
+    if (this.getCustomer(customerObj.id)) {
+      console.log("ID already exists bro");
+    }
+    else {
+      this.customers.push(customerObj);
+      console.log("Customer added to warehouse bro");
+    };
+  };
+
+  this.removeCar = function(carID){
+    var indexnum = findCarIndex(carID);
+    if (indexnum > -1){
+      // change to splice
+      delete this.cars[indexnum];
+      console.log("Car has been deleted bro");
+    }
+    else {
+      console.log("Car not found bro");
+    }
+  };
+
+  this.removeCustomer = function(customerID){
+    var indexnum = findCustomerIndex(customerID);
+    if (indexnum > -1){
+      // change to splice
+      delete this.customers[indexnum];
+      console.log("Customer has been deleted bro");
+    }
+    else {
+      console.log("Customer not found bro");
+    }
+  };
+
+  this.availableCars = function(){
+    return this.cars.filter(function(car) {
+      // Will this return the full object into the array of just he available property?
+      return car.available;
+    });
+  };
+
+  this.rentCar = function(customerID,rentalDuration){
+    // insert code
+  };
 };
 
 
@@ -56,13 +146,23 @@ var carInfo = {
   rentalPrice: 200,
 };
 
+var carInfo2 = {
+  id: "002",
+  producer: "Honda",
+  model: "Civic",
+  rentalPrice: 150,
+};
+
 var carA = new Car(carInfo);
+var carB = new Car(carInfo2);
 
-var vendor = new Vendor('Jens Limited');
-vendor.addCustormer(customerA);
+var vendor = new Vendor('JensLimited');
+vendor.addCustomer(customerA);
 
-console.log(vendor.availableCars());
+
 vendor.addCar(carA);
-console.log(vendor.availableCars());
+vendor.addCar(carB);
 
-vendor.rentCar(customerA.id, 5);
+vendor.availableCars();
+
+// vendor.rentCar(customerA.id, 5);
