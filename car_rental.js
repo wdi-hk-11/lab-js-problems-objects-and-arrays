@@ -15,10 +15,12 @@ var Car = function (carInfo) {
   this.customer = null;
   this.rentalDuration = 0;
 
+/* Call rentalDuration then return rentalPrice * rentalDuration */
   this.quotePrice = function(rentalDuration){
     return rentalDuration * this.rentalPricePerDay;
   };
 
+/*Takes customer object and rentalDuration value */
   this.reserve = function (customer, rentalDuration) {
     if(this.availible) {
       this.availible = false;
@@ -48,24 +50,28 @@ var Vendor = function(name) {
   this.cars = [];
   this.customers = [];
 
+/* Takes carID and returns the index of -1 */
   this.findCarIndex = function (carID) {
     return this.cars.findIndex(function(car){
       return car.id === carID ? true : false ;
     });
   };
 
+/* Takes customerID and returns the index of -1 */
   this.findCustomerIndex = function (customerID) {
     return this.customers.findIndex(function(customer){
       return customer.id === customerID ? true : false ;
     });
   };
 
+/* takes a carID and returns the actual car object or undefined  */
   this.getCar = function (carID) {
     return this.cars.find(function(car){
       return car.id === carID ? true : false ;
     });
   };
 
+/* takes a customerID and returns the actual car/customer object or undefined. */
   this.getCustomer = function (customerID) {
     return this.customers.find(function(customer){
       return customer.id === customerID ? true : false ;
@@ -82,6 +88,7 @@ var Vendor = function(name) {
     }
   };
 
+/* Get carID and return the value */
   this.addCustomer = function (customerObj) {
     var customer = this.getCustomer(customerObj.id);
     if (customer) {
@@ -146,6 +153,7 @@ var Vendor = function(name) {
     }
   };
 
+/* takes no arguments. Use the array.reduce to sum up the revenues for each car.*/
   this.totalRevenue = function () {
     return this.cars.reduce(function(prevSum, currCar){
       console.log(prevSum, currCar);
