@@ -37,8 +37,9 @@ var Car = function (carInfo) {
       else
        {
         this.available=true;
-        this.customer={};
-        this.rentalDuration={};
+        this.customer=null;
+        this.rentalDuration=null;
+        return "Thank you !"
        };
   };
 };
@@ -105,7 +106,7 @@ var Vendor = function(name) {
       var customer=this.getCustomer(customerObj.customerID);
      if (customer === undefined){
       this.customers.push(customerObj);
-      console.log("Customer added to warehouse");
+      console.log("Customer added to records");
      }else
      {
       console.log("Customer ID exists");
