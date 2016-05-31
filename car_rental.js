@@ -36,7 +36,7 @@ var Car = function (carInfo) {
     } else {
       this.availible = true;
       this.customer = null;
-      this.rentalDuration = null;
+      this.rentalDuration = 0;
       return "Thank you!";
     }
   };
