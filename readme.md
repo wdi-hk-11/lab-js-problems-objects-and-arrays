@@ -1,4 +1,4 @@
-## Introduction
+## INTRODUCTION
 
 You are to create a car rental service that stores your cars available for rental and customers who rent the cars.
 
